@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createContext, useContext } from 'react';
 import './App.css';
 import { makeAutoObservable } from "mobx";
 import { observer } from "mobx-react";
@@ -7,42 +7,49 @@ class Incrementer {
   number = 0
 
   constructor() {
-      makeAutoObservable(this)
+    makeAutoObservable(this)
   };
 
   increase() {
-      this.number += 1
+    this.number += 1
   };
 
   reset() {
-      this.number = 0
+    this.number = 0
   };
 };
 
-const Ticker = observer(({ myIncrementer }: { myIncrementer:Incrementer }) => {
+const IncrementerContext = createContext<Incrementer | undefined>(undefined);
+
+const Ticker = observer(() => {
+  const useIncrementer = useContext(IncrementerContext);
   return (
     <div className="body">
       <div className="buttonContainer">
         <div
           className="button"
           onClick={() => {
-            myIncrementer.increase();
+            useIncrementer!.increase(); /**only for when you know not undefined */
           }}>Click Me!</div>
-          <div
+        <div
           className="button"
           onClick={() => {
-            myIncrementer.reset();
+            if (useIncrementer) {
+              useIncrementer.reset(); /**Safer way*/
+            };
           }}>Reset</div>
       </div>
-      <div className="display">The number is {myIncrementer.number}</div>
+      <div className="display">The number is {useIncrementer?.number}</div>
     </div>
   );
 });
 
 const App = () => {
   const myIncrementer = new Incrementer();
-  return(
-    <Ticker myIncrementer={myIncrementer} />
+  return (
+    <IncrementerContext.Provider value={myIncrementer}>
+      <Ticker />
+    </IncrementerContext.Provider>
   );
 };
 
