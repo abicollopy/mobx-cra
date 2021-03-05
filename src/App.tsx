@@ -4,18 +4,18 @@ import { makeAutoObservable } from "mobx";
 import { observer } from "mobx-react";
 
 class Incrementer {
-  number = 0
+  number = 0;
 
   constructor() {
-    makeAutoObservable(this)
+    makeAutoObservable(this);
   };
 
   increase() {
-    this.number += 1
+    this.number += 1;
   };
 
   reset() {
-    this.number = 0
+    this.number = 0;
   };
 };
 
@@ -24,7 +24,7 @@ const IncrementerContext = createContext<Incrementer | undefined>(undefined);
 const Ticker = observer(() => {
   const useIncrementer = useContext(IncrementerContext);
   return (
-    <div className="body">
+    <div className="incrementerContainer">
       <div className="buttonContainer">
         <div
           className="button"
