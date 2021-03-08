@@ -2,6 +2,7 @@ import React, { createContext, useContext } from 'react';
 import './App.css';
 import { makeAutoObservable } from "mobx";
 import { observer } from "mobx-react";
+import Todo from './Todo';
 
 class Incrementer {
   number = 0;
@@ -49,6 +50,7 @@ const App = () => {
   return (
     <IncrementerContext.Provider value={myIncrementer}>
       <Ticker />
+      <Todo />
     </IncrementerContext.Provider>
   );
 };
