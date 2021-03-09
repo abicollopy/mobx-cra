@@ -1,0 +1,45 @@
+.container{
+    width: 700px;
+    margin: 50px auto 0 auto;
+}
+
+.todo{
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.todo-text{
+    display: inline-block;
+    line-height: 25px;
+    padding: 5px 0 0 0;
+}
+
+.formButtonContainer{
+    display: inline-block;
+}
+
+.formButton{
+    line-height: 25px;
+    width: 75px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 5px 5px 5px 5px;
+    background-color: #F2CC8F;
+    color: white;
+    height: 25px;
+    display: inline-block;
+    margin: 0 10px 10px 10px;
+}
+
+.input{
+    width: 100%;
+    height: max-content;
+    margin: 5px 0 0 0;
+}
+
+.formButton:not(:first-child){
+    margin-left: 10px;
+  }
+
